@@ -9,6 +9,13 @@ const CrearProducto = () => {
     formState: { errors },
   } = useForm();
 
+  const isNotBlank = (value) => {
+    if (value.trim() === "") {
+      return "Este campo no puede contener solo espacios en blanco.";
+    }
+    return true;
+  };
+
   const onSubmit = (producto) => {
     console.log("Aqui agrego mi logica");
     console.log(producto);
@@ -31,6 +38,7 @@ const CrearProducto = () => {
                 message:
                   "El nombre del producto debe de tener min de 2 caracteres un maximo de 50 y sin ningun caracter numerico.",
               },
+              validate: isNotBlank,
             })}
           />
           <Form.Text className="text-danger">
@@ -76,6 +84,7 @@ const CrearProducto = () => {
                 value: 150,
                 message: "La descripcion debe de tener maximo 150 letras.",
               },
+              validate: isNotBlank,
             })}
           />
           <Form.Text className="text-danger">
