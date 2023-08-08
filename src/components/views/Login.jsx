@@ -1,5 +1,7 @@
 import { Form, Button, Container, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { login } from "../helpers/queries";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -11,6 +13,20 @@ const Login = () => {
   const onSubmit = (usuario) => {
     console.log("Aquí agrego mi logica");
     console.log(usuario);
+
+    login(usuario).then((repuesta) => {
+      console.log(repuesta);
+
+      if (repuesta) {
+        Swal.fire(
+          `Bienvenido! ${repuesta.nombreUsuario}`,
+          "Ingresaste a la web cafecito",
+          "success"
+        );
+      } else {
+        Swal.fire("Ocurrio un error!", "Email o password incorrectos", "error");
+      }
+    });
   };
 
   return (
