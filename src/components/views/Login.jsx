@@ -2,9 +2,8 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { login } from "../helpers/queries";
 import Swal from "sweetalert2";
-import { json } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setUsuarioActivo }) => {
   const {
     register,
     handleSubmit,
@@ -25,6 +24,7 @@ const Login = () => {
           "success"
         );
         sessionStorage.setItem("usuarioLogueado", JSON.stringify(repuesta));
+        setUsuarioActivo(repuesta);
       } else {
         Swal.fire("Ocurrio un error!", "Email o password incorrectos", "error");
       }
