@@ -11,6 +11,8 @@ import EditarProducto from "./components/views/producto/EditarProducto";
 import Administrador from "./components/views/Administrador";
 import Registro from "./components/views/Registro";
 import Login from "./components/views/Login";
+import EncapsularRutas from "./components/routes/EncapsularRutas";
+import RutasProtegidas from "./components/routes/RutasProtegidas";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
@@ -33,17 +35,16 @@ function App() {
         ></Route>
         <Route exact path="/registro" element={<Registro />}></Route>
         <Route exact path="/detalle" element={<DetalleProducto />}></Route>
-        <Route exact path="/administrador" element={<Administrador />}></Route>
+
         <Route
-          exact
-          path="/administrador/crear"
-          element={<CrearProducto />}
+          path="/administrador/*"
+          element={
+            <EncapsularRutas>
+              <RutasProtegidas />
+            </EncapsularRutas>
+          }
         ></Route>
-        <Route
-          exact
-          path="/administrador/editar"
-          element={<EditarProducto />}
-        ></Route>
+
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
       <Footer />
