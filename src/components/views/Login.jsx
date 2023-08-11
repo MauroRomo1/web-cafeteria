@@ -2,8 +2,11 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { login } from "../helpers/queries";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setUsuarioActivo }) => {
+  const navegacion = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -11,12 +14,7 @@ const Login = ({ setUsuarioActivo }) => {
   } = useForm();
 
   const onSubmit = (usuario) => {
-    console.log("Aquí agrego mi logica");
-    console.log(usuario);
-
     login(usuario).then((repuesta) => {
-      console.log(repuesta);
-
       if (repuesta) {
         Swal.fire(
           `Bienvenido! ${repuesta.nombreUsuario}`,
@@ -25,6 +23,7 @@ const Login = ({ setUsuarioActivo }) => {
         );
         sessionStorage.setItem("usuarioLogueado", JSON.stringify(repuesta));
         setUsuarioActivo(repuesta);
+        navegacion("/administrador");
       } else {
         Swal.fire("Ocurrio un error!", "Email o password incorrectos", "error");
       }
