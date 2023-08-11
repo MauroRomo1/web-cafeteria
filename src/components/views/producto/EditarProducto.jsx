@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
@@ -8,6 +9,10 @@ const EditarProducto = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    document.title = "Cafecito | Editar producto";
+  }, []);
 
   const onSubmit = (producto) => {
     console.log("Aqui agrego mi logica");

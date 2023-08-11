@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
@@ -8,6 +9,10 @@ const CrearProducto = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    document.title = "Cafecito | Crear productos";
+  }, []);
 
   const isNotBlank = (value) => {
     if (value.trim() === "") {

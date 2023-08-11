@@ -1,11 +1,15 @@
-
+import { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 
 const Registro = () => {
+  useEffect(() => {
+    document.title = "Cafecito | Registro";
+  }, []);
+
   return (
     <div className="mt-5 mainSection">
       <h3 className="text-center">Registro</h3>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center m-0">
         <div className="col-12 col-sm-8 col-md-6 col-xl-4">
           <Form>
             <Form.Group className="mb-2">

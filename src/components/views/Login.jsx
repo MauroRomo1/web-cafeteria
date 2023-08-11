@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { login } from "../helpers/queries";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = ({ setUsuarioActivo }) => {
   const navegacion = useNavigate();
@@ -12,6 +13,10 @@ const Login = ({ setUsuarioActivo }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    document.title = "Cafecito | Login";
+  }, []);
 
   const onSubmit = (usuario) => {
     login(usuario).then((repuesta) => {
