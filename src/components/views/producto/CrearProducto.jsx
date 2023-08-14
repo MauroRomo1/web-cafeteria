@@ -14,13 +14,6 @@ const CrearProducto = () => {
     document.title = "Cafecito | Crear productos";
   }, []);
 
-  const isNotBlank = (value) => {
-    if (value.trim() === "") {
-      return "Este campo no puede contener solo espacios en blanco.";
-    }
-    return true;
-  };
-
   const onSubmit = (producto) => {
     console.log("Aqui agrego mi logica");
     console.log(producto);
@@ -39,11 +32,10 @@ const CrearProducto = () => {
             {...register("nombreProducto", {
               required: "El nombre del producto es obligatorio.",
               pattern: {
-                value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/,
+                value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]{2,50}$/,
                 message:
                   "El nombre del producto debe de tener min de 2 caracteres un maximo de 50 y sin ningun caracter numerico.",
               },
-              validate: isNotBlank,
             })}
           />
           <Form.Text className="text-danger">
@@ -81,6 +73,11 @@ const CrearProducto = () => {
             placeholder="Descripcion del producto..."
             {...register("descripcion", {
               required: "La descripcion del producto es obligatoria.",
+              pattern: {
+                value: /^[^\s].*[^\s]$/,
+                message:
+                  "La descripcion no debe contener espacios en blanco al principio o al final.",
+              },
               minLength: {
                 value: 6,
                 message: "La descripcion debe de tener minimo 6 letras.",
@@ -89,7 +86,6 @@ const CrearProducto = () => {
                 value: 150,
                 message: "La descripcion debe de tener maximo 150 letras.",
               },
-              validate: isNotBlank,
             })}
           />
           <Form.Text className="text-danger">
