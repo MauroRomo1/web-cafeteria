@@ -1,8 +1,12 @@
 import { Container, Row } from "react-bootstrap";
 import CardProducto from "./producto/CardProducto";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Inicio = () => {
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {}, []);
+
   useEffect(() => {
     document.title = "Cafecito | Inicio";
   }, []);
