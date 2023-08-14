@@ -1,6 +1,8 @@
+const uriUsuario = import.meta.env.VITE_API_USUARIO;
+
 export const login = async (usuario) => {
   try {
-    const repuesta = await fetch("http://localhost:3004/usuarios");
+    const repuesta = await fetch(uriUsuario);
     const listaUsuarios = await repuesta.json();
 
     const usuarioBuscado = listaUsuarios.find(
