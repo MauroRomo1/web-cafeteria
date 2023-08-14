@@ -1,11 +1,25 @@
 import { Container, Row } from "react-bootstrap";
 import CardProducto from "./producto/CardProducto";
 import { useEffect, useState } from "react";
+import { listarProductos } from "../helpers/queries";
+import Swal from "sweetalert2";
 
 const Inicio = () => {
   const [productos, setProductos] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    listarProductos().then((respuestaProductos) => {
+      if (respuestaProductos) {
+        setProductos(respuestaProductos);
+      } else {
+        Swal.fire(
+          "Ocurrio un error",
+          "Intente realizar esta operacion mas tarde",
+          "error"
+        );
+      }
+    });
+  }, []);
 
   useEffect(() => {
     document.title = "Cafecito | Inicio";
@@ -22,9 +36,6 @@ const Inicio = () => {
         <h1 className="display-4">Nuestros Productos</h1>
         <hr />
         <Row>
-          <CardProducto></CardProducto>
-          <CardProducto></CardProducto>
-          <CardProducto></CardProducto>
           <CardProducto></CardProducto>
         </Row>
       </Container>

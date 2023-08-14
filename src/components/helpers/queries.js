@@ -27,7 +27,7 @@ export const login = async (usuario) => {
   }
 };
 
-const listarProductos = async () => {
+export const listarProductos = async () => {
   try {
     const respuesta = await fetch(uriProducto);
     const listaProductos = await respuesta.json();
