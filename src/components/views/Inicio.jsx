@@ -36,7 +36,9 @@ const Inicio = () => {
         <h1 className="display-4">Nuestros Productos</h1>
         <hr />
         <Row>
-          <CardProducto></CardProducto>
+          {productos.map((producto) => (
+            <CardProducto key={producto.id} producto={producto}></CardProducto>
+          ))}
         </Row>
       </Container>
     </section>
