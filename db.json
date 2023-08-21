@@ -15,6 +15,14 @@
       "imagen": "https://images.pexels.com/photos/3020919/pexels-photo-3020919.jpeg",
       "descripcion": "un tecito de manzanilla",
       "id": 2
+    },
+    {
+      "nombreProducto": "Medialuna",
+      "precio": "800",
+      "descripcion": "Cosa dulce",
+      "imagen": "https://images.pexels.com/photos/3020919/pexels-photo-3020919.jpeg",
+      "categoria": "dulce",
+      "id": 3
     }
   ],
   "usuarios": [

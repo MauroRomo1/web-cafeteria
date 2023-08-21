@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
+import { crearProducto } from "../../helpers/queries";
 
 const CrearProducto = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -15,8 +18,25 @@ const CrearProducto = () => {
   }, []);
 
   const onSubmit = (producto) => {
-    console.log("Aqui agrego mi logica");
-    console.log(producto);
+    crearProducto(producto)
+      .then((resp) => {
+        if (resp.status === 201) {
+          Swal.fire(
+            "Producto guardado",
+            "Su producto se guardo correctamente!",
+            "success"
+          );
+          reset();
+        }
+      })
+      .catch((error) => {
+        Swal.fire(
+          "Hubo un error",
+          "Error al intentar cargar producto",
+          "error"
+        );
+        console.log(error);
+      });
   };
 
   return (
